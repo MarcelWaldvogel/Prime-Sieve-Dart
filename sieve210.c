@@ -1,7 +1,8 @@
-#include <stdio.h>
+//sieve210.c
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
+#include "sieve210.h"
 
 //the spaces between the wheel spokes.  The sieve skips all multiples of 2, 3, 5, and 7
 //and that can be done by starting at 1 and adding these numbers in sequence.
@@ -115,6 +116,7 @@ uint64_t* sievePrimes(uint64_t max){
 
 //test if a number is prime by checking if it is in a list of primes.
 //binary search primes for n
+//TODO: use a jumping search
 char is_prime(uint64_t n, uint64_t* primes){
 	//start with max as the number of primes in primes.
 	uint64_t max = primes[0];
@@ -136,12 +138,5 @@ char is_prime(uint64_t n, uint64_t* primes){
 		}
 	}
 	return 1;
-}
-
-//TODO: split out main
-int main(){
-	uint64_t* P=sievePrimes(1000000000);
-	free(P);
-	return 0;
 }
 
