@@ -105,7 +105,7 @@ uint64_t* sievePrimes(uint64_t max){
     
     //is_composite is no longer needed
     free(is_composite);
-    primes[0] = i;//set primes[0] to the length of primes.
+    primes[0] = i - 1;//set primes[0] to the number of primes in primes.
     t = realloc(primes, i*sizeof(uint64_t));//shrink primes to the proper length.  TODO: make primes only ever need one resize.
     if(t){
 		primes = t;
