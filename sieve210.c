@@ -56,7 +56,7 @@ uint64_t* sievePrimes(uint64_t max){
 	primes[4] = 7;
 	
 	//declare variables.
-    uint64_t i = 1, p1, p2, i1, i2, step1, step2, multiple;
+    uint64_t i = 5, p1, p2, i1, i2, step1, step2, multiple;
     uint64_t* t;
     
     //for every number still marked prime, cross off its multiples with every other number still marked prime and add it to the primes list.
@@ -81,7 +81,7 @@ uint64_t* sievePrimes(uint64_t max){
 				free(is_composite);
 				return primes;
 			}
-			primes=t;
+			primes = t;
 		}
 		
 		//mark all multiples of p1 and some number still marked as prime as composite.

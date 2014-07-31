@@ -19,7 +19,7 @@ int main(int argc, char** argv){
 	uint64_t* P=sievePrimes(max);
 	if(print){
 	    uint64_t max = P[0], i;
-		for(i = 1; i <= max; ++i){
+		for(i = 1; i < max; ++i){
 			printf("%lu\n",P[i]);
 		}
 	}
