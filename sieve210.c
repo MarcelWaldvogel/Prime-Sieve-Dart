@@ -27,7 +27,7 @@ const char lut_offsets[] = {
 
 //a function that calculates the index of a number in the is_composite array.
 //It will be the xth number relatively prime to 210
-uint64_t wheel_spokes(uint64_t n){
+uint64_t wheelSpokes(uint64_t n){
 	return n/210*48 + lut_offsets[n%210];
 }
 
@@ -98,7 +98,7 @@ uint64_t* sievePrimes(uint64_t max){
 			
             multiple = p1*p2;
             do{//cross off all multiple = p1*p2^n < max
-                is_composite[wheel_spokes(multiple)] = 1;
+                is_composite[wheelSpokes(multiple)] = 1;
             }while((multiple *= p1) <= max);
         }
     }
@@ -117,7 +117,7 @@ uint64_t* sievePrimes(uint64_t max){
 //test if a number is prime by checking if it is in a list of primes.
 //binary search primes for n
 //TODO: use a jumping search
-char is_prime(uint64_t n, uint64_t* primes){
+char isPrime(uint64_t n, uint64_t* primes){
 	//start with max as the number of primes in primes.
 	uint64_t max = primes[0];
 	//shift primes to eliminate the length from the list.
