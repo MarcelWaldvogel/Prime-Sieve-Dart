@@ -11,7 +11,7 @@ int main(int argc, char** argv){
 	uint64_t max=1000000;
 	char print=1;
 	if(argc>1){
-		max=uint64_t(atoll(argv[1]));
+		max=atoll(argv[1]);
 	}
 	if(argc>2){
 		print=atoi(argv[2]);
