@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv){
 	uint64_t max=1000000;
-	bool print=true;
+	char print=1;
 	if(argc>1){
 		max=uint64_t(atoll(argv[1]));
 	}
