@@ -86,7 +86,7 @@ uint64_t* sievePrimes(uint64_t max){
 		
 		//mark all multiples of p1 and some number still marked as prime as composite.
 		//note: if a number is being marked composite, it times p1 still needs to be crossed of, e.g. p1 = 11, p2 = 11, cross off 121 and 1331 and so on.
-        for(i2 = i1, p2 = p1, step2 = step1; p2 <= max/p1; ++i2, p2 += offsets[step2]){
+        for(i2 = i1, p2 = p1, step2 = step1 - 1; p2 <= max/p1; ++i2, p2 += offsets[step2]){
 			++step2;
 			if(step2 == 48){
 				step2 = 0;
