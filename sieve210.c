@@ -117,7 +117,7 @@ uint64_t* sievePrimes(uint64_t max){
 //test if a number is prime by checking if it is in a list of primes.
 //binary search primes for n
 //TODO: use a jumping search
-char isPrime(uint64_t n, uint64_t* primes){
+char isPrime(uint64_t n, const uint64_t* primes){
 	//start with max as the number of primes in primes.
 	uint64_t max = primes[0];
 	//shift primes to eliminate the length from the list.
