@@ -1,6 +1,32 @@
 import 'dart:typed_data';
 import 'dart:math';
 
+class _Flags {
+  /// Number of flag bits to store.
+  final int max;
+  /// Actual memory provider.
+  ///
+  /// Uint8List is abstract, so we cannot easily subclass it.
+  Uint8List mem;
+
+  /// Create a flag array of [max] bits.
+  _Flags(this.max) {
+    mem = Uint8List((max + 7) ~/ 8);
+  }
+
+  operator [](int idx) {
+    return mem[idx ~/ 8] & (1 << (idx & 7)) != 0;
+  }
+
+  operator []=(int idx, bool value) {
+    if (value) {
+      mem[idx ~/ 8] |= (1 << (idx & 7));
+    } else {
+      mem[idx ~/ 8] &= ~(1 << (idx & 7));
+    }
+  }
+}
+
 //the spaces between the wheel spokes.  The sieve skips all multiples of 2, 3, 5, and 7
 //and that can be done by starting at 1 and adding these numbers in sequence.
 class Sieve210 {
@@ -36,7 +62,7 @@ class Sieve210 {
 	//the 0 element of this array is the length of the array.
   Sieve210(int max) {
     //create a list of chars representing whether or not every number to be sieved is composite.  Initialized to 0.
-    var is_composite = Uint8List(max ~/ 210 * 48 + 48);
+    var is_composite = _Flags(max ~/ 210 * 48 + 48);
 
     //primes_s is the estimated number of primes up to max, plus 1 (for the length of the primes array stored at 0)
     //TODO: calculate this better by using logarithmic integrals or by only pushing and sieving up to sqrt(max), then pushing.
@@ -61,7 +87,7 @@ class Sieve210 {
       }
 
       //skip composite numbers.  Note that is_composite[i1] is just looking up if i1 has been marked composite, not doing a mathematical test.
-      if (is_composite[i1] != 0) {
+      if (is_composite[i1]) {
         continue;
       }
 
@@ -87,14 +113,14 @@ class Sieve210 {
           step2 = 0;
         }
 
-        if (is_composite[i2] != 0) {
+        if (is_composite[i2]) {
           continue;
         }
 
         multiple = p1 * p2;
         do {
           //cross off all multiple = p1*p2^n < max
-          is_composite[wheelSpokes(multiple)] = 1;
+          is_composite[wheelSpokes(multiple)] = true;
         } while ((multiple *= p1) <= max);
       }
     }
