@@ -33,7 +33,19 @@ main(List<String> args) {
     }
   }
   if (results['query']) {
-    // TODO: Here would be the query loop
+    var line;
     print("Now enter your candidate primes one per line:");
+    while ((line = stdin.readLineSync()) != null) {
+      if (positiveInt(line)) {
+        var n = int.parse(line);
+        if (primes.isPrime(n)) {
+          print("prime");
+        } else {
+          print("not prime");
+        }
+      } else {
+        print("invalid query");
+      }
+    }
   }
 }
