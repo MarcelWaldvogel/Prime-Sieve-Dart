@@ -1,2 +1,4 @@
-ptest
-*.o
+.idea
+.dart_tool/
+.packages
+pubspec.lock

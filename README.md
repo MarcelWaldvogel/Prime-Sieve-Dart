@@ -1,12 +1,27 @@
-Prime-Sieve
-===========
+# Prime-Sieve-Dart
 
-A prime number generator written in C, using Euler's sieve and a wheel size of 210.
+A prime number generator written in Dart, using Euler's sieve and a wheel size of 210.
 
-Usage: `./ptest [max [print-mode]]`
+The code is based as closely as possible on
+[hacatu](https://github.com/hacatu)'s
+[Prime-Sieve](https://github.com/hacatu/Prime-Sieve).
 
-* Determine primality for all numbers up to `max`. `max` is bounded by 2^64-1.
-* `print-mode` can take the following values:
-  - `1`: Print all prime numbers.
-  - `0`: Only calculate them (for speed tests).
-  - absent: Primality test mode. Enter numbers for which you want to test primality.
+## Performance
+
+The performance of the prime determination is about 3 times slower than the C implementation. On my machine, it requires about 10.5 s instead of 3.5 s.
+
+(Printing however is way slower, instead of 3.5 s for the C version, the output takes about 80 s.)
+
+## Usage
+`dart bin/main.dart [options] &lt;max&gt;`
+
+Determine primality for all numbers up to `max`. `max` should not exceed
+about 2^60 (or 2^50, when translating to JavaScript) or the size of your
+memory, whatever is smaller.
+
+## Options
+* `--help`: Print help
+* `--[no-]print`: Whether to output the primes after calculating them.
+  (Default: true.)
+* `--query`: Whether to enter a query input loop for primality tests after
+  possibly printing the values.
