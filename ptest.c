@@ -39,5 +39,3 @@ Running in primality testing mode.  Enter a number up to %lu inclusive:\n", max)
 	}
 	free(P);
 }
-
-	
