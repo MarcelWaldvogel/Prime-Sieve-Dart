@@ -9,17 +9,21 @@ bool positiveInt(String s) {
 
 main(List<String> args) {
   var parser = ArgParser()
-  ..addFlag('help', abbr: 'h', negatable: false)
-  ..addFlag('query', abbr: 'q', help: "Whether to enter a primality query loop")
-  ..addFlag('count', abbr: 'c', defaultsTo: true, help: "Whether to show the count")
-  ..addFlag('print', abbr: 'p', defaultsTo: true, help: "Whether to print the primes");
+    ..addFlag('help', abbr: 'h', negatable: false)
+    ..addFlag('query',
+        abbr: 'q', help: "Whether to enter a primality query loop")
+    ..addFlag('count',
+        abbr: 'c', defaultsTo: true, help: "Whether to show the count")
+    ..addFlag('print',
+        abbr: 'p', defaultsTo: true, help: "Whether to print the primes");
   var results = parser.parse(args);
   if (results.rest.length != 1 || !positiveInt(results.rest[0])) {
     print("""Usage: primes.dart [options] <max>
     Calculates all primes up to <max> and then performs the action(s)
     specified by the options.
 
-""" + parser.usage);
+""" +
+        parser.usage);
     exit(1);
   }
 
