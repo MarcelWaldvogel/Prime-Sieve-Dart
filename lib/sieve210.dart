@@ -13,18 +13,9 @@ class Sieve210 {
 		2, 6, 4, 2, 4, 2, 10, 2
 	];
 
-	//a 210 char array that has the index in the wheel (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7
+	//a 210 entry array that will be initialized with the index in the wheel
+  // (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7
 	static List<int> _lut_offsets;
-	/*
-	= {
-		1: 0, 11: 1, 13: 2, 17: 3, 19: 4, 23: 5, 29: 6, 31: 7,
-		37: 8, 41: 9, 43: 10, 47: 11, 53: 12, 59: 13, 61: 14, 67: 15,
-		71: 16, 73: 17, 79: 18, 83: 19, 89: 20, 97: 21,101: 22, 103: 23,
-		107: 24, 109: 25, 113: 26, 121: 27, 127: 28, 131: 29, 137: 30, 139: 31,
-		143: 32, 149: 33, 151: 34, 157: 35, 163: 36, 167: 37, 169: 38, 173: 39,
-		179: 40, 181: 41, 187: 42, 191: 43, 193: 44, 197: 45, 199: 46, 209: 47
-	};
-	 */
 
 	//a function that calculates the index of a number in the is_composite array.
 	//It will be the xth number relatively prime to 210
@@ -46,8 +37,10 @@ class Sieve210 {
       value++;
       l[key] = value;
     }
+    // Allow some parallelism
     _lut_offsets = l;
   }
+
 	//sievePrimes returns a pointer to an array of all the primes up to and including max.
 	//the 0 element of this array is the length of the array.
   Sieve210(int max) {
