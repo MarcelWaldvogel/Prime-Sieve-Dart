@@ -11,6 +11,7 @@ main(List<String> args) {
   var parser = ArgParser()
   ..addFlag('help', abbr: 'h', negatable: false)
   ..addFlag('query', abbr: 'q', help: "Whether to enter a primality query loop")
+  ..addFlag('count', abbr: 'c', defaultsTo: true, help: "Whether to show the count")
   ..addFlag('print', abbr: 'p', defaultsTo: true, help: "Whether to print the primes");
   var results = parser.parse(args);
   if (results.rest.length != 1 || !positiveInt(results.rest[0])) {
@@ -23,6 +24,9 @@ main(List<String> args) {
   }
 
   var primes = Sieve210(int.parse(results.rest[0]));
+  if (results['count']) {
+    print(primes.length);
+  }
   if (results['print']) {
     for (var i = 0; i < primes.length; i++) {
       print(primes.primes[i]);

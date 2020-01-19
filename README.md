@@ -8,7 +8,9 @@ The code is based as closely as possible on
 
 ## Performance
 
-The performance of the prime determination is about 3 times slower than the C implementation. On my machine, it requires about 10.5 s instead of 3.5 s.
+The performance of the prime determination is about half as fast as the C
+implementation. On my machine, it requires about 7.5 s (Dart) instead of 3.5 s
+(C) to find all primes up to 10^9.
 
 (Printing however is way slower, instead of 3.5 s for the C version, the output takes about 80 s.)
 
@@ -21,6 +23,8 @@ memory, whatever is smaller.
 
 ## Options
 * `--help`: Print help
+* `--[no-]count`: Whether to output the count of primes found.
+  (Default: true.)
 * `--[no-]print`: Whether to output the primes after calculating them.
   (Default: true.)
 * `--query`: Whether to enter a query input loop for primality tests after
