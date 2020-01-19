@@ -13,7 +13,7 @@ The performance of the prime determination is about 3 times slower than the C im
 (Printing however is way slower, instead of 3.5 s for the C version, the output takes about 80 s.)
 
 ## Usage
-`dart bin/main.dart [options] &lt;max&gt;`
+`dart bin/main.dart [options] <max>`
 
 Determine primality for all numbers up to `max`. `max` should not exceed
 about 2^60 (or 2^50, when translating to JavaScript) or the size of your
