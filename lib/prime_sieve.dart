@@ -4,21 +4,21 @@ import 'dart:math';
 //the spaces between the wheel spokes.  The sieve skips all multiples of 2, 3, 5, and 7
 //and that can be done by starting at 1 and adding these numbers in sequence.
 class Sieve210 {
-	static final _offsets = [
-		10, 2, 4, 2, 4, 6,  2, 6,
-		4, 2, 4, 6, 6, 2,  6, 4,
-		2, 6, 4, 6, 8, 4,  2, 4,
-		2, 4, 8, 6, 4, 6,  2, 4,
-		6, 2, 6, 6, 4, 2,  4, 6,
-		2, 6, 4, 2, 4, 2, 10, 2
-	];
+  static final _offsets = [
+    10, 2, 4, 2, 4, 6, 2, 6,
+    4, 2, 4, 6, 6, 2, 6, 4,
+    2, 6, 4, 6, 8, 4, 2, 4,
+    2, 4, 8, 6, 4, 6, 2, 4,
+    6, 2, 6, 6, 4, 2, 4, 6,
+    2, 6, 4, 2, 4, 2, 10, 2
+  ];
 
-	//a 210 entry array that will be initialized with the index in the wheel
+  //a 210 entry array that will be initialized with the index in the wheel
   // (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7
-	static List<int> _lut_offsets;
+  static List<int> _lut_offsets;
 
-	//a function that calculates the index of a number in the is_composite array.
-	//It will be the xth number relatively prime to 210
+  //a function that calculates the index of a number in the is_composite array.
+  //It will be the xth number relatively prime to 210
   static int wheelSpokes(int n) {
     return n ~/ 210 * 48 + _lut_offsets[n % 210];
   }
@@ -41,8 +41,8 @@ class Sieve210 {
     _lut_offsets = l;
   }
 
-	//sievePrimes returns a pointer to an array of all the primes up to and including max.
-	//the 0 element of this array is the length of the array.
+  //sievePrimes returns a pointer to an array of all the primes up to and including max.
+  //the 0 element of this array is the length of the array.
   Sieve210(int max) {
     if (_lut_offsets == null) _init_lut_offsets();
     //create a list of chars representing whether or not every number to be sieved is composite.  Initialized to 0.
@@ -50,7 +50,7 @@ class Sieve210 {
 
     //primes_s is the estimated number of primes up to max, plus 1 (for the length of the primes array stored at 0)
     //TODO: calculate this better by using logarithmic integrals or by only pushing and sieving up to sqrt(max), then pushing.
-    var primes_s = (max / log(max+1) * 1.2 + 10).ceil();
+    var primes_s = (max / log(max + 1) * 1.2 + 10).ceil();
     primes = Uint64List(primes_s);
 
     //initializes the primes which are part of the wheel.
@@ -112,9 +112,9 @@ class Sieve210 {
     length = i;
   }
 
-	//test if a number is prime by checking if it is in a list of primes.
-	//binary search primes for n
-	//TODO: use a jumping search
+  //test if a number is prime by checking if it is in a list of primes.
+  //binary search primes for n
+  //TODO: use a jumping search
   bool isPrime(int n) {
     //start with max as the number of primes in primes.
     var max = length;
