@@ -117,7 +117,7 @@ class Sieve210 {
 	//TODO: use a jumping search
   bool isPrime(int n) {
     //start with max as the number of primes in primes.
-    var max = primes.length;
+    var max = length;
     //start with min as 0 and mid as the average of min and max.
     var min = 0, mid = max ~/ 2;
     //binary search
