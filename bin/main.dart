@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:args/args.dart';
-import 'package:prime_sieve/sieve210.dart';
+import 'package:prime_sieve/prime_sieve.dart';
 
 bool positiveInt(String s) {
   var value = int.tryParse(s);
