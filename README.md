@@ -21,6 +21,8 @@ memory, whatever is smaller.
 
 ## Options
 * `--help`: Print help
+* `--[no-]count`: Whether to output the count of primes found.
+  (Default: true.)
 * `--[no-]print`: Whether to output the primes after calculating them.
   (Default: true.)
 * `--query`: Whether to enter a query input loop for primality tests after
