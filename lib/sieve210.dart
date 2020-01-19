@@ -40,7 +40,7 @@ class Sieve210 {
 
     //primes_s is the estimated number of primes up to max, plus 1 (for the length of the primes array stored at 0)
     //TODO: calculate this better by using logarithmic integrals or by only pushing and sieving up to sqrt(max), then pushing.
-    var primes_s = (max / log(max+1) + 10).ceil();
+    var primes_s = (max / log(max+1) * 1.2 + 10).ceil();
     primes = Uint64List(primes_s);
 
     //initializes the primes which are part of the wheel.
