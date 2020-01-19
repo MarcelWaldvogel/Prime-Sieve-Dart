@@ -61,9 +61,10 @@ class Sieve210 {
 
     //declare variables.
     int i = 4, p1, p2, i1 = 1, i2, step1 = 0, step2, multiple;
+    int sqrtmax = sqrt(max).ceil();
 
     //for every number still marked prime, cross off its multiples with every other number still marked prime and add it to the primes list.
-    for (p1 = 11; p1 <= max; ++i1, p1 += _offsets[step1]) {
+    for (p1 = 11; p1 <= sqrtmax; ++i1, p1 += _offsets[step1]) {
       //switch to the next step in offsets, wrapping around if it overflows.
       ++step1;
       if (step1 == 48) {
@@ -107,6 +108,29 @@ class Sieve210 {
           is_composite[wheelSpokes(multiple)] = 1;
         } while ((multiple *= p1) <= max);
       }
+    }
+
+    while (p1 <= max) {
+      ++step1;
+      if (step1 == 48) {
+        step1 = 0;
+      }
+      if (is_composite[i1] == 0) {
+        //add p1 to the list of primes
+        primes[i++] = p1;
+        if (i == primes_s) {
+          //re allocate the primes array.  TODO: do this at most once, either using li instead of log or by stopping at the sqrt and allocating what's left minus the number of numbers crossed off.
+          primes_s = (primes_s * 1.1).ceil();
+          var t = Uint64List(primes_s);
+          for (var c = 0; c < i; c++) {
+            t[c] = primes[c];
+          }
+          primes = t;
+        }
+
+      }
+      ++i1;
+      p1 += _offsets[step1];
     }
 
     length = i;
