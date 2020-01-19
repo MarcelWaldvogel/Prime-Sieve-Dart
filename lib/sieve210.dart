@@ -41,15 +41,7 @@ class Sieve210 {
     // Allow some parallelism
     _lut_offsets = l;
   }
-
-  set_composite(int idx) {
-    composite[idx ~/ 8] |= 1 << (idx & 7);
-  }
-
-  is_composite(int idx) {
-    return composite[idx ~/ 8] & (1 << (idx & 7)) != 0;
-  }
-
+  
 	//sievePrimes returns a pointer to an array of all the primes up to and including max.
 	//the 0 element of this array is the length of the array.
   Sieve210(int max) {
@@ -80,7 +72,7 @@ class Sieve210 {
       }
 
       //skip composite numbers.  Note that is_composite[i1] is just looking up if i1 has been marked composite, not doing a mathematical test.
-      if (is_composite(i1)) {
+      if (composite[i1 ~/ 8] & (1 << (i1 & 7)) != 0) {
         continue;
       }
 
@@ -106,14 +98,15 @@ class Sieve210 {
           step2 = 0;
         }
 
-        if (is_composite(i2)) {
+        if (composite[i2 ~/ 8] & (1 << (i2 & 7)) != 0) {
           continue;
         }
 
         multiple = p1 * p2;
         do {
           //cross off all multiple = p1*p2^n < max
-          set_composite(wheelSpokes(multiple));
+          var wsm = wheelSpokes(multiple);
+          composite[wsm ~/ 8] |= 1 << (wsm & 7);
         } while ((multiple *= p1) <= max);
       }
     }
