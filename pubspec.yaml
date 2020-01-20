@@ -1,6 +1,6 @@
 name: prime_sieve
 description: A wheel-based prime number sieve. Create a list of primes up to a given value. Fast up to at least 1E9.
-version: 0.0.1
+version: 0.9.0
 homepage: https://github.com/MarcelWaldvogel/Prime-Sieve-Dart/
 
 environment:
