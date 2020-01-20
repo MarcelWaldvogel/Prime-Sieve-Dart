@@ -18,7 +18,7 @@ main(List<String> args) {
         abbr: 'p', defaultsTo: true, help: "Whether to print the primes");
   var results = parser.parse(args);
   if (results.rest.length != 1 || !positiveInt(results.rest[0])) {
-    print("""Usage: primes.dart [options] <max>
+    print("""Usage: prime_sieve.dart [options] <max>
     Calculates all primes up to <max> and then performs the action(s)
     specified by the options.
 

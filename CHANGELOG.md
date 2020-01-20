@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## Fixed
 
 ## Changed
+* Executable is now in `example/main.dart`.
 * Ran `dartfmt` over all the files (with the exception of `_offsets` in
   `lib/prime_sieve.dart`, which would really look ugly).
 

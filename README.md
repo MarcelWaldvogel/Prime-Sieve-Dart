@@ -15,7 +15,7 @@ implementation. On my machine, it requires about 7.5 s (Dart) instead of 3.5 s
 (Printing however is way slower, instead of 3.5 s for the C version, the output takes about 80 s.)
 
 ## Usage
-`dart bin/main.dart [options] <max>`
+`dart example/prime_sieve.dart [options] <max>`
 
 Determine primality for all numbers up to `max`. `max` should not exceed
 about 2^60 (or 2^50, when translating to JavaScript) or the size of your
