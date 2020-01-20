@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # 0.9.0 - 2020-01-20
 ## Added
+* API documentation
 * Changelog
 
 ## Fixed

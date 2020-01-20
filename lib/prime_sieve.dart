@@ -1,9 +1,13 @@
 import 'dart:typed_data';
 import 'dart:math';
 
+/// Calculate prime numbers up to [max].
+///
+/// Uses a sieve with wheel of size 210.
 //the spaces between the wheel spokes.  The sieve skips all multiples of 2, 3, 5, and 7
 //and that can be done by starting at 1 and adding these numbers in sequence.
 class Sieve210 {
+  /// The distances of the spokes in the wheel.
   static final _offsets = [
     10, 2, 4, 2, 4, 6, 2, 6,
     4, 2, 4, 6, 6, 2, 6, 4,
@@ -13,19 +17,23 @@ class Sieve210 {
     2, 6, 4, 2, 4, 2, 10, 2
   ];
 
-  //a 210 entry array that will be initialized with the index in the wheel
-  // (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7
+  /// A 210 entry array that will be initialized with the index in the wheel
+  /// (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7.
   static List<int> _lut_offsets;
 
-  //a function that calculates the index of a number in the is_composite array.
-  //It will be the xth number relatively prime to 210
-  static int wheelSpokes(int n) {
+  /// Calculate the index of a number in the is_composite array.
+  ///
+  /// It will be the xth number relatively prime to 210.
+  static int _wheelSpokes(int n) {
     return n ~/ 210 * 48 + _lut_offsets[n % 210];
   }
 
+  /// Calculated primes are stored here.
   Uint64List primes;
+  /// Number of primes in [primes].
   int length;
 
+  /// Create the [_lut_offsets] table based on [_offsets].
   _init_lut_offsets() {
     // The last two elements are not used; makes the code simpler, however.
     var l = List<int>(212);
@@ -41,6 +49,10 @@ class Sieve210 {
     _lut_offsets = l;
   }
 
+  /// Create the list of primes up to [max].
+  ///
+  /// Results are stored in [primes] (the primes themselves) and [length]
+  /// (the number of items found).
   //sievePrimes returns a pointer to an array of all the primes up to and including max.
   //the 0 element of this array is the length of the array.
   Sieve210(int max) {
@@ -104,7 +116,7 @@ class Sieve210 {
         multiple = p1 * p2;
         do {
           //cross off all multiple = p1*p2^n < max
-          is_composite[wheelSpokes(multiple)] = 1;
+          is_composite[_wheelSpokes(multiple)] = 1;
         } while ((multiple *= p1) <= max);
       }
     }
@@ -112,6 +124,7 @@ class Sieve210 {
     length = i;
   }
 
+  /// Check whether the parameter is present in the list of [primes].
   //test if a number is prime by checking if it is in a list of primes.
   //binary search primes for n
   //TODO: use a jumping search
