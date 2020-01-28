@@ -19,7 +19,7 @@ class Sieve210 {
 
   /// A 210 entry array that will be initialized with the index in the wheel
   /// (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7.
-  static List<int> _lut_offsets;
+  static var _lut_offsets = _init_lut_offsets();
 
   /// Calculate the index of a number in the is_composite array.
   ///
@@ -34,7 +34,7 @@ class Sieve210 {
   int length;
 
   /// Create the [_lut_offsets] table based on [_offsets].
-  _init_lut_offsets() {
+  static _init_lut_offsets() {
     // The last two elements are not used; makes the code simpler, however.
     var l = List<int>(212);
     var key = 1;
@@ -45,8 +45,7 @@ class Sieve210 {
       value++;
       l[key] = value;
     }
-    // Allow some parallelism
-    _lut_offsets = l;
+    return l;
   }
 
   /// Create the list of primes up to [max].
@@ -56,7 +55,6 @@ class Sieve210 {
   //sievePrimes returns a pointer to an array of all the primes up to and including max.
   //the 0 element of this array is the length of the array.
   Sieve210(int max) {
-    if (_lut_offsets == null) _init_lut_offsets();
     //create a list of chars representing whether or not every number to be sieved is composite.  Initialized to 0.
     var is_composite = Uint8List(max ~/ 210 * 48 + 48);
 
