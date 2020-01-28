@@ -19,7 +19,7 @@ class Sieve210 {
 
   /// A 210 entry array that will be initialized with the index in the wheel
   /// (offsets) for each modulus 210 not a multiple of 2, 3, 5, or 7.
-  static var _lut_offsets = _init_lut_offsets();
+  static final _lut_offsets = _init_lut_offsets();
 
   /// Calculate the index of a number in the is_composite array.
   ///
