@@ -16,6 +16,13 @@ implementation. On my machine, it requires about 7.5&#8239;s (Dart) instead of 3
 (Printing, however, is way slower, instead of 3.5&#8239;s for the C version, the
 output takes about 80&#8239;s.)
 
+### More performance or flexibility?
+
+If you need more performance (about 20x) or flexibility (e.g., iterators),
+[Kim Walisch's `primesieve` C/C++ library](https://github.com/kimwalisch/primesieve)
+is the way to go. It also may come
+[pre-packaged with/for your OS](https://github.com/kimwalisch/primesieve#installation).
+
 ## Usage
 `dart example/prime_sieve.dart [options] <max>`
 
