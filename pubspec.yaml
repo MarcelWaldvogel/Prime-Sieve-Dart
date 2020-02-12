@@ -4,7 +4,7 @@ version: 0.9.1
 homepage: https://github.com/MarcelWaldvogel/Prime-Sieve-Dart/
 
 executables:
-  prime_sieve_dart:
+  primzahlsieb:
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
