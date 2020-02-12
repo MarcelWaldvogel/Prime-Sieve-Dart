@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:args/args.dart';
-import 'package:prime_sieve/prime_sieve.dart';
+import 'package:prime_sieve_dart/prime_sieve_dart.dart';
 
 bool positiveInt(String s) {
   var value = int.tryParse(s);
   return value != null && value >= 0;
 }
 
-main(List<String> args) {
+void main(List<String> args) {
   var parser = ArgParser()
     ..addFlag('help', abbr: 'h', negatable: false)
     ..addFlag('query',
