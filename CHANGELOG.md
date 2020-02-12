@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # 0.9.1 - 2020-02-12
 ## Added
+* Added `prime_sieve_dart` as an executable (instead of an example)
+* Added minimalistic documentation example
 
 ## Fixed
 
